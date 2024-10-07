@@ -19,6 +19,8 @@ from ai_scientist.perform_review import perform_review, load_paper, perform_impr
 
 NUM_REFLECTIONS = 3
 
+base_url = "http://phantasmagoria.local:1234/v1/"
+
 
 def print_time():
     print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
@@ -247,7 +249,7 @@ def do_idea(
                 review = perform_review(
                     paper_text,
                     model="gpt-4o-2024-05-13",
-                    client=openai.OpenAI(),
+                    client=openai.OpenAI(base_url=base_url),
                     num_reflections=5,
                     num_fs_examples=1,
                     num_reviews_ensemble=5,
@@ -273,7 +275,7 @@ def do_idea(
                 review = perform_review(
                     paper_text,
                     model="gpt-4o-2024-05-13",
-                    client=openai.OpenAI(),
+                    client=openai.OpenAI(base_url=base_url),
                     num_reflections=5,
                     num_fs_examples=1,
                     num_reviews_ensemble=5,
@@ -342,7 +344,7 @@ if __name__ == "__main__":
 
         print(f"Using OpenAI API with model {args.model}.")
         client_model = "gpt-4o-2024-05-13"
-        client = openai.OpenAI()
+        client = openai.OpenAI(base_url=base_url)
     elif args.model == "deepseek-coder-v2-0724":
         import openai
 
